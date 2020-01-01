@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alert{% endblock %}
+
+{% block body %}
+    <h1>Alert</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ alert.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ alert.titre }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ alert.designation }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut</th>
+                <td>{{ alert.dateDebut ? alert.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{{ alert.dateFin ? alert.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Publier</th>
+                <td>{{ alert.publier ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('alert_index') }}">back to list</a>
+
+    <a href="{{ path('alert_edit', {'id': alert.id}) }}">edit</a>
+
+    {{ include('alert/_delete_form.html.twig') }}
+{% endblock %}
