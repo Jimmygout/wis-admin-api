@@ -24,7 +24,7 @@
                             <tr>
 							
 						       <td>{{ i }}</td>
-							   	<td style="padding:0px 0px 0px 0px"><img style="max-width:20%" src="{{ asset('uploads/' ~ article.picture) }}" class="responsive-img"></td>
+							   	<td style="padding:0px 0px 0px 0px"><img style="width: 3.5rem;" src="{{ asset('uploads/' ~ article.picture) }}" class="responsive-img"></td>
                          
                                 <td><a href="{{ path('article_show', {'url': article.url}) }}" target="_blank">{{ article.title }}</a></td>
                                 <td>
@@ -79,6 +79,7 @@
 
             <div class="row">
                 <div class="col s12 m-t-30">
+                        <a href="{{ path('alert_new') }}" class="btn btn blue darken-4" style="float: right">Ajouter</a>
                     <h5>Les alerts</h5>
                     <table>
                         <tr>
@@ -101,14 +102,52 @@
                                 <td>{{ alert.dateDebut|date('d/m/Y H:i:s') }}</td>
                                 <td>{{ alert.DateFin|date('d/m/Y H:i:s') }}</td>
                                 <td>
-                                    <a href=""><i class="material-icons red-text">delete</i></a>
-                                </td>
+                                    <a href="{{ path('alert_edit', {'id': alert.id}) }}"><i class="material-icons blue-text">edit</i></a>
+                                    <a href="{{ path('alert_delete', {'id': alert.id}) }}"><i class="material-icons red-text">delete</i></a>
+                                 </td>
                             </tr>
                             {% set i = i+1 %}
                         {% endfor %}
                     </table>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col s12 m-t-30">
+                        <a href="{{ path('concert_new') }}" class="btn btn blue darken-4" style="float: right">Ajouter</a>
+                    <h5>Les Concerts</h5>
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>Chanteur</th>
+                            <th>Désignation</th>
+                            <th>Date concert</th>
+                            <th>Image</th>
+                        </tr>
+                        {% set i = 1 %}
+                        {% for concert in concerts %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>
+                                    <span class="badge {{ concert.publier ? 'blue' : 'red' }}">
+                                        {{ concert.publier ? 'oui' : 'non' }}
+                                    </span>
+                                </td>
+                                <td>{{ concert.dateConcert|date('d/m/Y') }}</td>
+                                <td>
+                                    <a href="{{ path('concert_edit', {'id': concert.id}) }}"><i class="material-icons blue-text">edit</i></a>
+                                    <a href="{{ path('concert_delete', {'id': concert.id}) }}"><i class="material-icons red-text">delete</i></a>
+                                </td>
+                                <td style="padding:0px 0px 0px 0px"><img style="width: 3.5rem;" src="{{ asset('uploads/' ~ concert.picture) }}" class=""></td>
+                         
+                            </tr>
+                            {% set i = i+1 %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+
         </div>
     </div>
 {% endblock %}

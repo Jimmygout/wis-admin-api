@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Alert;
+use App\Entity\Concert;
 use App\Form\ArticleType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -140,10 +141,13 @@ class BlogController extends AbstractController
 
         $alert = $this->getDoctrine()->getRepository(Alert::class)->findAll();
 
+        $concert = $this->getDoctrine()->getRepository(Concert::class)->findAll();
+
 
         return $this->render('admin/index.html.twig', [
             'articles' => $articles,
             'users' => $users,
+            'concerts' => $concert,
             'alerts' => $alert
         ]);
     }
