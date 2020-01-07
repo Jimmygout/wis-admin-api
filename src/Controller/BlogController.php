@@ -7,6 +7,7 @@ use App\Entity\Article;
 use App\Entity\Alert;
 use App\Entity\Concert;
 use App\Form\ArticleType;
+use App\Form\ConcertType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -130,8 +131,38 @@ class BlogController extends AbstractController
         return $this->redirectToRoute('admin');
     }
 
-    public function admin()
+    public function admin(Request $request): Response
     {
+
+        /***********************  CONCERT **********************/
+        $concert = new Concert();
+        $form_concert = $this->createForm(ConcertType::class, $concert);
+        $form_concert->handleRequest($request);
+
+        if ($form_concert->isSubmitted() && $form_concert->isValid()) {
+            if ($concert->getPicture() !== null) {
+                $file = $form_concert->get('picture')->getData();
+                $fileName = uniqid(). '.' .$file->guessExtension();
+
+                try {
+                    $file->move(
+                        $this->getParameter('images_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    return new Response($e->getMessage());
+                }
+
+                $concert->setPicture($fileName);
+            }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($concert);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin');
+        }
+        /********************************************************/
+
         $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
             [],
             ['lastUpdateDate' => 'DESC']
@@ -148,7 +179,8 @@ class BlogController extends AbstractController
             'articles' => $articles,
             'users' => $users,
             'concerts' => $concert,
-            'alerts' => $alert
+            'alerts' => $alert,
+            'form_concert' => $form_concert->createView()
         ]);
     }
 

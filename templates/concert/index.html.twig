@@ -1,43 +1,78 @@
-
-
-{% block title %}Concert index{% endblock %}
-
 {% block body %}
-    <h1>Concert index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Designation</th>
-                <th>DateConcert</th>
-                <th>Publier</th>
-                <th>Chanteur</th>
-                <th>Picture</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for concert in concerts %}
-            <tr>
-                <td>{{ concert.id }}</td>
-                <td>{{ concert.designation }}</td>
-                <td>{{ concert.dateConcert ? concert.dateConcert|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ concert.publier ? 'Yes' : 'No' }}</td>
-                <td>{{ concert.chanteur }}</td>
-                <td>{{ concert.picture }}</td>
-                <td>
-                    <a href="{{ path('concert_show', {'id': concert.id}) }}">show</a>
-                    <a href="{{ path('concert_edit', {'id': concert.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="admin-page">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 box_form">
+                 <h5 class="center-align">Les Concerts</h5>
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>Chanteur</th>
+                            <th>Visible</th>
+                            <th>Date concert</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                        {% set i = 1 %}
+                        {% for concert in concerts %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ concert.chanteur }}</td>
+                                <td>
+                                    <span class="badge {{ concert.publier ? 'blue' : 'red' }}">
+                                        {{ concert.publier ? 'oui' : 'non' }}
+                                    </span>
+                                </td>
+                                <td>{{ concert.dateConcert|date('d/m/Y') }}</td>
+                                     <td style="padding:0px 0px 0px 0px"><img style="width: 3.5rem;" src="{{ asset('uploads/' ~ concert.picture) }}" class=""></td>
+                                <td>
+                                    <a class="modal-trigger" href="#modal_ajout_concert"><i class="material-icons blue-text">edit</i></a>
+                                    <a class="modal-trigger" href="#modal{{i}}"><i class="material-icons red-text">delete</i></a>           
+                                </td>
 
-    <a href="{{ path('concert_new') }}">Create new</a>
+                            </tr>
+                              <div id="modal{{i}}" class="modal">
+    <div class="modal-content">
+      <h4>Suppression </h4>
+      <p>Voullez-vous vraiment supprimer le concert concernant le chanteur : {{concert.chanteur}}</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Retour</a>
+       
+       <form class="inline-block" method="post" action="{{ path('concert_delete', {'id': concert.id}) }}">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ concert.id) }}">
+    <button class="modal-close waves-effect waves-red btn-flat red-text">Supprimer</button>
+
+    </div>
+</form>
+
+ 
+
+  </div>
+
+ 
+                            {% set i = i+1 %}
+
+                            <!-- Modal Structure -->
+                        {% endfor %}
+                    </table>
+
+                    {#---------- Boutton d'ajout ------------#}
+                    <div class="center-align mt-1 mb-1">
+                        <a  href="#modal_ajout_concert" class="modal-trigger tooltipped btn-floating btn-large waves-effect waves-light red"  data-position="top" data-tooltip="Ajouter"><i class="material-icons">add</i></a>
+                    </div>
+
+                    {#---------- Modale d'ajout ------------#}
+                    <div id="modal_ajout_concert" class="modal">
+                        <div class="modal-content">
+                        {% include "concert/new.html.twig" %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

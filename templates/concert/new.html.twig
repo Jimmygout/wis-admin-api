@@ -1,11 +1,7 @@
-
-
-{% block title %}New Concert{% endblock %}
-
 {% block body %}
-    <h1>Create new Concert</h1>
+    <h2 style="text-align:center">Créer un nouveau concert</h2>
 
-    {{ include('concert/_form.html.twig') }}
+    {% include('concert/_form.html.twig') %}
 
-    <a href="{{ path('concert_index') }}">back to list</a>
+    {#<a href="{{ path('concert_index') }}">back to list</a>#}
 {% endblock %}

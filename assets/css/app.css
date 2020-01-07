@@ -1,0 +1,30 @@
+.box_form
+{
+    /**box-shadow: 0px 0px 20px 1px;**/
+    padding: 0px 25px 30px 25px;
+    background-color: #ffffffdb;
+    border-radius: 10px;
+}
+.inline-block{
+    display: inline-block;
+}
+
+.nav-wrapper
+{
+    background-color: #00003f;
+}
+.container{
+    width: 85%;
+}
+
+@media screen and (max-width: 992px) {
+    .container{
+        width: 100%;
+    }
+  }
+
+  hr {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #00003f inset;
+}

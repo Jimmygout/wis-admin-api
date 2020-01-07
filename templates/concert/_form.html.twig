@@ -1,4 +1,57 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
+{{ form_start(form_concert) }}
+
+<div class="input-field col s12">
+<label for="chanteur">Chanteur</label>
+            {{ form_widget(form_concert.chanteur) }}
+            
+    </div>
+
+    <div class="input-field col s12">
+<label for="designation">Désignation</label>
+            {{ form_widget(form_concert.designation) }}
+            
+    </div>
+    {#
+    {{ form_row(form_concert.chanteur,
+                    {
+                        'attr':{
+                        'class': "validate"}}
+                )
+                }}
+                <label for="concert_chanteur">Telephone</label>
+</div>
+#}
+
+
+ <div class="file-field input-field col s12">
+      <div class="btn">
+        <span>Fichier</span>
+        <input type="file" multiple>
+      </div>
+      <div class="file-path-wrapper">
+      {{ form_row(form_concert.picture,
+                    {
+                        'attr':{'class': "file-path validate",
+                        'placeholder':'Cliquer pour télécharger',
+                        'type':'text'}}
+                )
+                }}
+    </div>
+</div>
+
+<div class="input-field col s12">
+    <label for="dateConcert">Date de debut</label>
+            {{ form_widget(form_concert.dateConcert) }}
+            
+</div>
+<div class="input-field col s12">
+
+    <p>
+      <label>
+        {{ form_widget(form_concert.publier) }}
+       <span>Etat de publication</span>
+      </label>
+      </p>
+</div>
     <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{{ form_end(form_concert) }}
