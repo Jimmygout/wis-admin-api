@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+
+<div class="input-field col s12">
+<label for="chanteur">Adresse mail</label>
+            {{ form_widget(form.email) }}
+            
+    </div>
+
+    <div class="input-field col s12">
+<label for="designation">Username</label>
+            {{ form_widget(form.username) }}
+            
+    </div>
+
+    <div class="input-field col s12">
+        <span>Roles de l'utilisateur</span>
+        {{ form_widget(form.roles) }}
+       
+
+</div>
+
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

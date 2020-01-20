@@ -3,6 +3,5 @@
   "build/app.js": "/build/app.js",
   "build/form.css": "/build/form.css",
   "build/form.js": "/build/form.js",
-  "build/runtime.js": "/build/runtime.js",
-  "build/vendors~app.js": "/build/vendors~app.js"
+  "build/runtime.js": "/build/runtime.js"
 }

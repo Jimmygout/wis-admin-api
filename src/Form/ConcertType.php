@@ -16,17 +16,16 @@ class ConcertType extends AbstractType
     {
         $builder
             ->add('designation' , TextType::class , [
-                'label' => false,
-                'attr' => array(
-                    'placeholder' => "Designation"
-                )
-            ])
-            
-            ->add('dateConcert', DateType::class, [
-                'widget' => 'single_text',
-                'attr' => ['class' => 'datepicker validate'],
+                
             ])
 
+            ->add('dateConcert', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'datepicker validate']
+                // this is actually the default format for single_text
+                
+            ])
 
             ->add('publier', CheckboxType::class, [
                 'label'    => 'Show this entry publicly?',
@@ -35,13 +34,10 @@ class ConcertType extends AbstractType
             ])
 
             ->add('chanteur' , TextType::class , [
-                'label' => false,
                 'attr' => array(
-                    'placeholder' => "Nom du chanteur",
-                    'class' => 'fadeIn second',
-                    'id' => 'login'
                 )
             ])
+
             ->add('picture', FileType::class, [
                 'required' => false,
                 'data_class' => null

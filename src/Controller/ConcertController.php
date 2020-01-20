@@ -21,37 +21,9 @@ class ConcertController extends AbstractController
     public function index(ConcertRepository $concertRepository, Request $request): Response
     {
         $concert = new Concert();
-        $form = $this->createForm(ConcertType::class, $concert);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($concert->getPicture() !== null) {
-                $file = $form->get('picture')->getData();
-                $fileName = uniqid(). '.' .$file->guessExtension();
-
-                try {
-                    $file->move(
-                        $this->getParameter('images_directory'),
-                        $fileName
-                    );
-                } catch (FileException $e) {
-                    return new Response($e->getMessage());
-                }
-
-                $concert->setPicture($fileName);
-            }
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($concert);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('concert_index');
-        }
-
-
         return $this->render('concert/index.html.twig', [
             'concerts' => $concertRepository->findAll(),
             'concert' => $concert,
-            'form_concert' => $form->createView()
         ]);
     }
 
@@ -89,7 +61,7 @@ class ConcertController extends AbstractController
 
         return $this->render('concert/new.html.twig', [
             'concert' => $concert,
-            'form' => $form->createView(),
+            'form_concert' => $form->createView(),
         ]);
     }
 
@@ -139,7 +111,7 @@ class ConcertController extends AbstractController
 
         return $this->render('concert/edit.html.twig', [
             'concert' => $concert,
-            'form' => $form->createView(),
+            'form_concert' => $form->createView(),
         ]);
     }
 
@@ -154,6 +126,6 @@ class ConcertController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('concert_index');
+        return $this->redirectToRoute('admin');
     }
 }

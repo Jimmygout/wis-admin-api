@@ -8,6 +8,7 @@
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
 
+
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
@@ -21,6 +22,18 @@ document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
     var instances = M.Datepicker.init(elems);
   });
+
+
+  $(document).ready(function(){
+
+    // Format des date et initialisation du datepicke
+    $('.datepicker').datepicker({
+        format : 'yyyy-mm-dd',
+    });
+
+  });
+
+  /****File *****/
 
 console.log('javascript app')
 
