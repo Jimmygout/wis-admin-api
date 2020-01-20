@@ -175,10 +175,3 @@ h1{
     background-color: #00003f;
     outline: none;
 }
-
-
-[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-   position: inherit;
-   opacity: 1; 
-  pointer-events: none;
-}

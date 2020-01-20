@@ -16,12 +16,13 @@ class UserType extends AbstractType
         $builder
             ->add('email')
             ->add('roles', ChoiceType::class, [
+                'attr' => ['class' => 'check_admin'],
                 'choices' => [
                     'Admin' => 'ROLE_ADMIN',
                     'Super Admin' => 'ROLE_SUPER_ADMIN',
-                    'Aucun' => '',
+                    'Aucun role' => 'ROLE_AUCUN'
                 ],
-                'expanded'  => true, // liste déroulante
+                'expanded'  => false, // liste déroulante
                 'multiple'  => true, // choix multiple
             ])
             //->add('password')

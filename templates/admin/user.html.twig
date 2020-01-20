@@ -19,14 +19,42 @@
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.username }}</td>
                                 <td>
-                                    <span class="badge blue">
-                                        admin.
+                                {% for role in user.roles %}
+                                    {% if role == 'ROLE_SUPER_ADMIN' %}
+                                    <span class="badge purple darken-4">
+                                        super admin
                                     </span>
+                                    {% endif %}
+                                    {% if role == 'ROLE_ADMIN' %}
+                                    <span class="badge blue">
+                                        admin
+                                    </span>
+                                    {% endif %}
+                                {% endfor %}
+                                    
+                                    
                                 </td>
                                 <td>
-                                    <a href=""><i class="material-icons red-text">delete</i></a>
+                                  <a  href="{{ path('user_edit', {'id': user.id}) }}"><i class="material-icons blue-text">edit</i></a>
+                                   <a class="modal-trigger" href="#modal{{i}}"><i class="material-icons red-text">delete</i></a> 
                                 </td>
                             </tr>
+                            <div id="modal{{i}}" class="modal">
+
+    <div class="modal-content">
+      <h4>Suppression </h4>
+      <p>Voullez-vous vraiment supprimer l'utilisateur : {{user.email}}</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Retour</a>
+        <form class="inline-block" method="post" action="{{ path('user_delete', {'id': user.id}) }}">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+        <button class="modal-close waves-effect waves-red btn-flat red-text">Supprimer</button>
+    </form>
+    </div>
+</div>
+
                             {% set i = i+1 %}
                         {% endfor %}
                     </table>

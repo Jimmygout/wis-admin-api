@@ -21,10 +21,16 @@ document.addEventListener('DOMContentLoaded', function() {
     var instance = M.Tabs.init(elems);
     var elems = document.querySelectorAll('.datepicker');
     var instances = M.Datepicker.init(elems);
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
   });
 
 
   $(document).ready(function(){
+
+    $( "#user_username" ).change(function() {
+      alert( "Handler for .change() called." );
+    });
 
     // Format des date et initialisation du datepicke
     $('.datepicker').datepicker({
