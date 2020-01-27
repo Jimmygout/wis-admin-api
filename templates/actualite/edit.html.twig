@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Actualite{% endblock %}
+{% block title %}Editer Actualité{% endblock %}
 
 {% block body %}
-    <h1>Edit Actualite</h1>
+    <div class="container">
+    <h1 class="center-align" >éditer Actualité</h1>
 
-    {{ include('actualite/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('actualite/_form.html.twig', {'button_label': 'Mettre à jour','button_img_label': 'Modifier l image' }) }}
 
-    <a href="{{ path('actualite_index') }}">back to list</a>
-
-    {{ include('actualite/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

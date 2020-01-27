@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Alert;
+use App\Entity\Actualite;
 use App\Entity\Concert;
 use App\Form\ArticleType;
 use App\Form\ConcertType;
@@ -139,7 +140,7 @@ class BlogController extends AbstractController
         );
 
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-
+        $actualites = $this->getDoctrine()->getRepository(Actualite::class)->findAll();
         $alert = $this->getDoctrine()->getRepository(Alert::class)->findAll();
 
         $concert = $this->getDoctrine()->getRepository(Concert::class)->findAll();
@@ -148,6 +149,7 @@ class BlogController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'articles' => $articles,
             'users' => $users,
+            'actualites' => $actualites,
             'concerts' => $concert,
             'alerts' => $alert,
  ]);

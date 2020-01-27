@@ -1,5 +1,6 @@
 {{ form_start(form_concert) }}
 
+
 <div class="input-field col s12">
 <label for="chanteur">Chanteur</label>
             {{ form_widget(form_concert.chanteur) }}
@@ -12,49 +13,28 @@
             
     </div>
 
-{% set current_path = app.request.get('_route') %}
 
-
-<div class="file-upload">
-  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">{{ button_img_label|default('Ajouter une image') }}</button>
-
-  <div class="image-upload-wrap">
-    {{ form_row(form_concert.picture,
-                    {
-                        'attr':{'class': "file-upload-input",
-                        'placeholder':'Cliquer pour télécharger',
-                        'onchange':'readURL(this)'}}
-                )
-                }}
-    <div class="drag-text">
-    {% if current_path == 'concert_edit' %}
-    <div style="padding:0px 0px 0px 0px"><img style="max-height: 200px;max-width: 200px;" src="{{ asset('uploads/' ~ concert.picture) }}" class=""></div>
-{% else %}
-<h3>Drag and drop a file or select add Image</h3>
-{% endif %}
-      
-    </div>
-  </div>
-  <div class="file-upload-content">
-    <img class="file-upload-image" src="#" alt="your image" />
-    <div class="image-title-wrap">
-      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
-    </div>
-  </div>
-</div>
-
-
- <div class="file-field input-field col s12">
-  
-     
- 
-</div>
 
 <div class="input-field col s12">
     <label for="dateConcert">Date du concert</label>
             {{ form_widget(form_concert.dateConcert) }}
             
 </div>
+
+<div class="input-field col s12 center-align">
+
+    {{ form_widget(form_concert.picture,
+                    {
+                        'attr':{'class': "edit_img",
+                        }}
+                )
+                }}
+
+<img style="width:30%" class="z-depth-3" src="/uploads/{{concert.picture}}">
+</div>
+
+
+
 
 <div class="input-field col s12">
 
@@ -74,40 +54,4 @@
 {{ form_end(form_concert) }}
 
 {% block scripts %}
-	<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script>
-function readURL(input) {
-  if (input.files && input.files[0]) {
-
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-      $('.image-upload-wrap').hide();
-
-      $('.file-upload-image').attr('src', e.target.result);
-      $('.file-upload-content').show();
-
-      $('.image-title').html(input.files[0].name);
-    };
-
-    reader.readAsDataURL(input.files[0]);
-
-  } else {
-    removeUpload();
-  }
-}
-
-function removeUpload() {
-  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-  $('.file-upload-content').hide();
-  $('.image-upload-wrap').show();
-}
-$('.image-upload-wrap').bind('dragover', function () {
-		$('.image-upload-wrap').addClass('image-dropping');
-	});
-	$('.image-upload-wrap').bind('dragleave', function () {
-		$('.image-upload-wrap').removeClass('image-dropping');
-});
-</script>
-
 	{% endblock %}

@@ -28,18 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   $(document).ready(function(){
 
-    $( "#user_username" ).change(function() {
-      alert( "Handler for .change() called." );
-    });
-
     // Format des date et initialisation du datepicke
     $('.datepicker').datepicker({
         format : 'yyyy-mm-dd',
     });
 
   });
-
-  /****File *****/
 
 console.log('javascript app')
 

@@ -27,8 +27,8 @@
                                 <td>{{ concert.dateConcert|date('d/m/Y') }}</td>
                                      <td style="padding:0px 0px 0px 0px"><img style="width: 3.5rem;" src="{{ asset('uploads/' ~ concert.picture) }}" class=""></td>
                                 <td>
-                                    <a class="modal-trigger" href="{{ path('concert_edit', {'id': concert.id}) }}"><i class="material-icons blue-text">edit</i></a>
-                                    <a class="modal-trigger" href="#modal{{i}}"><i class="material-icons red-text">delete</i></a>           
+                                    <a class="modal-trigger" href="{{ path('concert_edit', {'id': concert.id}) }}"><i class=" scale1 material-icons blue-text">edit</i></a>
+                                    <a class="modal-trigger" href="#modal{{i}}"><i class="scale1 material-icons red-text">delete</i></a>           
                                 </td>
 
                             </tr>
@@ -43,13 +43,11 @@
         <form class="inline-block" method="post" action="{{ path('concert_delete', {'id': concert.id}) }}">
         <input type="hidden" name="_method" value="DELETE">
         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ concert.id) }}">
-        <button class="modal-close waves-effect waves-red btn-flat red-text">Supprimer</button>
+        <button class="modal-close waves-effect waves-red btn-flat red-text ">Supprimer</button>
     </form>
     </div>
 </div>
 
-
- 
                             {% set i = i+1 %}
 
                             <!-- Modal Structure -->
@@ -58,21 +56,8 @@
 
                     {#---------- Boutton d'ajout ------------#}
                     <div class="center-align mt-1 mb-1">
-                        <a  href="{{ path('concert_new') }}" class="modal-trigger tooltipped btn-floating btn-large waves-effect waves-light red"  data-position="top" data-tooltip="Ajouter"><i class="material-icons">add</i></a>
+                        <a  href="{{ path('concert_new') }}" class="modal-trigger tooltipped btn-floating btn-large waves-effect waves-light red scale1"  data-position="top" data-tooltip="Ajouter"><i class="material-icons">add</i></a>
                     </div>
-
-                    {#---------- Boutton d'ajout ------------
-                    <div class="center-align mt-1 mb-1">
-                        <a  href="#modal_ajout_concert" class="modal-trigger tooltipped btn-floating btn-large waves-effect waves-light red"  data-position="top" data-tooltip="Ajouter"><i class="material-icons">add</i></a>
-                    </div>
-                    #}
-                    {#---------- Modale d'ajout ------------
-                    <div id="modal_ajout_concert" class="modal">
-                        <div class="modal-content">
-                        {% include "concert/new.html.twig" %}
-                        </div>
-                    </div>
-                    #}
                 </div>
             </div>
         </div>

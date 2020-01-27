@@ -3,9 +3,9 @@
 {% block title %}New Actualite{% endblock %}
 
 {% block body %}
-    <h1>Create new Actualite</h1>
-
+<div class="container">
+    <h1 class="center-align" >Créer un Actualité</h1>
     {{ include('actualite/_form.html.twig') }}
 
-    <a href="{{ path('actualite_index') }}">back to list</a>
+</div>
 {% endblock %}

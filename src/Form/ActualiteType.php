@@ -6,6 +6,8 @@ use App\Entity\Actualite;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ActualiteType extends AbstractType
 {
@@ -14,9 +16,25 @@ class ActualiteType extends AbstractType
         $builder
             ->add('titre')
             ->add('designation')
-            ->add('dateDebut')
-            ->add('dateFin')
-            ->add('publier')
+            ->add('dateDebut', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'datepicker validate']
+                // this is actually the default format for single_text
+                
+            ])
+            ->add('dateFin', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'datepicker validate']
+                // this is actually the default format for single_text
+                
+            ])
+            ->add('publier', CheckboxType::class, [
+                'label'    => 'Show this entry publicly?',
+                'required' => false,
+                'attr' => ['checked' => 'checked']
+            ])
         ;
     }
 

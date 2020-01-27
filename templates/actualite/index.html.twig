@@ -1,14 +1,11 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Actualite index{% endblock %}
-
 {% block body %}
-    <h1>Actualite index</h1>
+<div class="container">
+    <h5 class="center-align" >Actualités</h5>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>#</th>
                 <th>Titre</th>
                 <th>Designation</th>
                 <th>DateDebut</th>
@@ -18,26 +15,47 @@
             </tr>
         </thead>
         <tbody>
+        {% set i = 1 %}
         {% for actualite in actualites %}
             <tr>
-                <td>{{ actualite.id }}</td>
+                <td>{{ i }}</td>
                 <td>{{ actualite.titre }}</td>
                 <td>{{ actualite.designation }}</td>
-                <td>{{ actualite.dateDebut ? actualite.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ actualite.dateFin ? actualite.dateFin|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ actualite.publier ? 'Yes' : 'No' }}</td>
+                <td>{{ actualite.dateDebut|date('d/m/Y') }}</td>
+                <td>{{ actualite.dateFin|date('d/m/Y') }}</td>
                 <td>
-                    <a href="{{ path('actualite_show', {'id': actualite.id}) }}">show</a>
-                    <a href="{{ path('actualite_edit', {'id': actualite.id}) }}">edit</a>
+                        <span class="badge {{ actualite.publier ? 'blue' : 'red' }}">
+                            {{ actualite.publier ? 'oui' : 'non' }}
+                        </span>
+                </td>
+                <td>
+                    <a class="modal-trigger" href="{{ path('actualite_edit', {'id': actualite.id}) }}"><i class=" scale1 material-icons blue-text">edit</i></a>
+                    <a class="modal-trigger" href="#modal{{i}}"><i class="scale1 material-icons red-text">delete</i></a>                        
                 </td>
             </tr>
+
+            <div id="modal{{i}}" class="modal">
+    <div class="modal-content">
+      <h4>Suppression </h4>
+      <p>Voullez-vous vraiment supprimer l'actualité : {{actualite.titre}}</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Retour</a>
+        <form class="inline-block" method="post" action="{{ path('actualite_delete', {'id': actualite.id}) }}">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ actualite.id) }}">
+        <button class="modal-close waves-effect waves-red btn-flat red-text ">Supprimer</button>
+    </form>
+    </div>
+</div>
+
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Pas de résultats</td>
             </tr>
+        {% set i = i+1 %}
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('actualite_new') }}">Create new</a>
+</div>
 {% endblock %}

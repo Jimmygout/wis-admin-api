@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m-t-30">
-                    <h5>Utilisateurs</h5>
+                    <h5 class="center-align">Utilisateurs</h5>
                     <table>
                         <tr>
                             <th>#</th>
@@ -35,8 +35,8 @@
                                     
                                 </td>
                                 <td>
-                                  <a  href="{{ path('user_edit', {'id': user.id}) }}"><i class="material-icons blue-text">edit</i></a>
-                                   <a class="modal-trigger" href="#modal{{i}}"><i class="material-icons red-text">delete</i></a> 
+                                  <a  href="{{ path('user_edit', {'id': user.id}) }}"><i class="scale1 material-icons blue-text">edit</i></a>
+                                   <a class="modal-trigger" href="#modal{{i}}"><i class="scale1 material-icons red-text">delete</i></a> 
                                 </td>
                             </tr>
                             <div id="modal{{i}}" class="modal">
