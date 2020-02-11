@@ -151,3 +151,11 @@ h1 {
         background-repeat: no-repeat;
         background-position: center;
     }
+    /* Pour la notif d'inscription */
+    .notification{
+        padding:10px!important;
+    }
+    /* Pour le texte à l'interrieur de la notif d'inscription */
+    .notificationTexte{
+        vertical-align: super!important;
+    }

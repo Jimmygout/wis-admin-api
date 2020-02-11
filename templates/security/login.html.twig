@@ -12,12 +12,19 @@
                 </div>
             {% endif %}
 
-            {% if app.user %}
-                <div class="col s12 m6 l6 offset-m3 offset-l3">
-                    Tu es actuellement connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnecte-toi</a>
-                </div>
+            {% if app.request.hasPreviousSession %}
+                    {% for message in app.flashes('successRegister') %}
+                        <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
+                            <div class="card-panel notification green accent-1" role="alert">
+                                <div class="material-icons">check</div>
+                                <span class="notificationTexte">{{ message }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
             {% endif %}
+            
             <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
+
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="" required autofocus placeholder="Adresse email">
             </div>
             <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
