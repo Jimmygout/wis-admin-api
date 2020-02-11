@@ -39,7 +39,7 @@ class AlertController extends AbstractController
             $entityManager->persist($alert);
             $entityManager->flush();
 
-            return $this->redirectToRoute('alert_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('alert/new.html.twig', [
@@ -69,7 +69,7 @@ class AlertController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('alert_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('alert/edit.html.twig', [
@@ -89,6 +89,6 @@ class AlertController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('alert_index');
+        return $this->redirectToRoute('admin');
     }
 }

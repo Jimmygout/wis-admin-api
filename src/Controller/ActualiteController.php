@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Actualite;
 use App\Form\ActualiteType;
-use App\Repository\ActualiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,16 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ActualiteController extends AbstractController
 {
-    /**
-     * @Route("/", name="actualite_index", methods={"GET"})
-     */
-    public function index(ActualiteRepository $actualiteRepository): Response
-    {
-        return $this->render('actualite/index.html.twig', [
-            'actualites' => $actualiteRepository->findAll(),
-        ]);
-    }
-
     /**
      * @Route("/new", name="actualite_new", methods={"GET","POST"})
      */
@@ -39,7 +28,7 @@ class ActualiteController extends AbstractController
             $entityManager->persist($actualite);
             $entityManager->flush();
 
-            return $this->redirectToRoute('actualite_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('actualite/new.html.twig', [
@@ -69,7 +58,7 @@ class ActualiteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('actualite_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('actualite/edit.html.twig', [
@@ -89,6 +78,6 @@ class ActualiteController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('actualite_index');
+        return $this->redirectToRoute('admin');
     }
 }

@@ -18,16 +18,15 @@
 {# -------------NAVBAR---------------#}
  <nav>
     <div class="nav-wrapper">
-      <a href="{{ path('homepage') }}" class="brand-logo">Logo</a>
-      <a href="{{ path('homepage') }}" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="{{ path('admin') }}" class="brand-logo">Logo</a>
+      <a href="{{ path('admin') }}" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Menu</a></li>
          {% if app.user %}
 			<li><a href="{{ path('admin') }}">Admin</a></li>
 			<li><a href="/api">API</a></li>
 			<li><a href="/logout">Deconnexion</a></li>
 		{% else %}
-			<li><a href="/connexion">Connexion</a></li>
+			<li><a href="/">Connexion</a></li>
 			<li><a href="/inscription">Inscription</a></li>
 		{% endif %}
       </ul>
@@ -38,7 +37,6 @@
 {# -------------NAVBAR MOBILE---------------#}
 
   <ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">Menu</a></li>
         {% if app.user %}
 			<li><a href="{{ path('admin') }}">Admin</a></li>
 			<li><a href="/api">API</a></li>
