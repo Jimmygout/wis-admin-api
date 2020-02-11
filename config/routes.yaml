@@ -25,3 +25,8 @@ article_remove:
 admin:
   path: /admin
   controller: App\Controller\BlogController::admin
+
+# api/config/routes.yaml
+authentication_token:
+    path: /authentication_token
+    methods: ['POST']

@@ -76,7 +76,7 @@ class ConcertController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="concert_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="concert_edit")
      */
     public function edit(Request $request, Concert $concert): Response
     {
@@ -84,9 +84,9 @@ class ConcertController extends AbstractController
 
         $form = $this->createForm(ConcertType::class, $concert);
         $form->handleRequest($request);
-
+        $uploadFile = $form->get('picture')->getData();
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($concert->getPicture() !== null && $concert->getPicture() !== $oldPicture) {
+            if ($uploadFile) {
                 $file = $form->get('picture')->getData();
                 $fileName = uniqid(). '.' .$file->guessExtension();
 

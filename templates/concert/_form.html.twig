@@ -1,3 +1,7 @@
+{% block stylesheets %}
+
+	{% endblock %}
+
 {{ form_start(form_concert) }}
 
 
@@ -23,15 +27,25 @@
 
 <div class="input-field col s12 center-align">
 
-    {{ form_widget(form_concert.picture,
-                    {
-                        'attr':{'class': "edit_img",
-                        }}
-                )
-                }}
+   
 
-<img style="width:30%" class="z-depth-3" src="/uploads/{{concert.picture}}">
+
+{#<img style="width:30%" class="z-depth-3" src="/uploads/{{concert.picture}}">#}
 </div>
+
+    <div class="avatar-upload">
+        <div class="avatar-edit">
+             {{ form_widget(form_concert.picture,
+                    {'id':"imageUpload",
+                })
+                }}
+            <label id="label_picture" for="imageUpload"><i class=" scale1 material-icons blue-text">edit</i></label>
+        </div>
+        <div class="avatar-preview">
+            <div id="imagePreview" style="background-image: url(https://images.pexels.com/photos/3619784/pexels-photo-3619784.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);">
+            </div>
+        </div>
+    </div>
 
 
 

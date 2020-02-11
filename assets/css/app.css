@@ -78,3 +78,76 @@ h1{
   border-right: 2px solid #00003f;
   border-bottom: 2px solid #00003f;
 }
+
+
+h1 {
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0 20px;
+}
+
+.avatar-edit {
+    position: absolute;
+    right: 43%;
+    z-index: 1;
+    top: -15px;
+}
+#imageUpload {
+    display: none;
+}
+#label_picture {
+        text-align: center;
+        margin-top: 5p;
+        padding: 4px;
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 20%;
+        background: #FFFFFF;
+        border: 1px solid transparent;
+        box-shadow: 1px 4px 4px 0px rgb(0, 0, 0);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all .2s ease-in-out;
+    }
+
+    #label_picture:hover {
+        background: #f1f1f1;
+        border-color: #d6d6d6;
+    }
+.avatar-upload {
+    position: relative;
+    max-width: 205px;
+    margin: 20px auto;
+}
+        
+                
+#label_picture:after {
+                    color: #757575;
+                    position: absolute;
+                    top: 10px;
+                    left: 0;
+                    right: 0;
+                    text-align: center;
+                    margin: auto;
+                }
+            
+        
+    
+    .avatar-preview {
+        width: 192px;
+        height: 192px;
+        position: relative;
+        border-radius: 10%;
+        box-shadow: 5px 4px 4px 1px rgb(0, 0, 0);
+        
+    }
+    #imagePreview {
+        width: 100%;
+        height: 100%;
+        border-radius: 10%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }

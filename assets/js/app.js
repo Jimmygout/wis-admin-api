@@ -8,6 +8,20 @@
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
 
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+          $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+          $('#imagePreview').hide();
+          $('#imagePreview').fadeIn(650);
+      }
+      reader.readAsDataURL(input.files[0]);
+  }
+}
+$("#imageUpload").change(function() {
+  readURL(this);
+});
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 document.addEventListener('DOMContentLoaded', function() {

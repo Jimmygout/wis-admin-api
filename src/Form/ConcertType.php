@@ -39,7 +39,10 @@ class ConcertType extends AbstractType
             ])
 
             ->add('picture', FileType::class, [
-                'data_class' => null
+                'data_class' => null,
+                /*'mapped' => false,*/
+                
+                'required' => false,
             ])
         ;
     }
